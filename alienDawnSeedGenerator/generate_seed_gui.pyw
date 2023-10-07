@@ -1,12 +1,10 @@
-import sys
 import tkinter as tk
-import subprocess
 from tkinter import ttk
 import pyperclip
+from PIL import Image, ImageTk
 from database import create_database, fetch_word_from_wordnet, store_words_in_database, get_word_count
 from random_seed import generate_game_seed_from_database
 import threading
-import install_util
 
 
 class SeedGeneratorApp(tk.Tk):
@@ -115,11 +113,6 @@ class SeedGeneratorApp(tk.Tk):
 
 
 if __name__ == "__main__":
-    install_util.install_and_import("nltk", "nltk")
-    install_util.install_and_import("Pillow", "PIL.Image")
-    install_util.install_and_import("Pillow", "PIL.ImageTk")
-
-    from PIL import Image, ImageTk
 
     app = SeedGeneratorApp()
     app.mainloop()

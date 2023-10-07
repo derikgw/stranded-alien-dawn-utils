@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>SeedGeneratorApp - User Documentation</title>
+</head>
+
+<body>
+
+<h1>SeedGeneratorApp - User Documentation</h1>
+
+<h2>Overview:</h2>
+<p>
+    <strong>SeedGeneratorApp</strong> is a graphical user interface (GUI) application designed to generate seeds for PC games. The seeds are generated using words from the WordNet database stored in a local SQLite database. The application provides functionalities such as generating seeds, copying them to the clipboard, and creating/recreating the word database.
+</p>
+
+<h2>Prerequisites:</h2>
+<ul>
+    <li>
+        <strong>Python:</strong> Ensure you have Python installed on your machine.
+    </li>
+    <li>
+        <strong>Required Python Libraries:</strong>
+        <ul>
+            <li><code>tkinter</code> - for GUI components.</li>
+            <li><code>pyperclip</code> - to copy seed data to the clipboard.</li>
+            <li><code>PIL</code> (from the Pillow package) - for image processing.</li>
+            <li><code>threading</code> - for background tasks without freezing the GUI.</li>
+            <li><code>nltk</code> - for accessing the WordNet database.</li>
+            <li><code>sqlite3</code> - for database operations.</li>
+        </ul>
+        Install these libraries using pip:
+        <pre><code>pip install tkinter pyperclip Pillow nltk sqlite3</code></pre>
+    </li>
+    <li>
+        <strong>WordNet Data:</strong> Before using the application, ensure WordNet data is downloaded. The script contains a method (<code>ensure_wordnet_data()</code>) that checks and downloads the WordNet data if not already present.
+    </li>
+</ul>
+
+<h2>How to Run:</h2>
+<ol>
+    <li>Navigate to the directory containing the <code>generate_seed_gui.pyw</code> script.</li>
+    <li>Run the script:
+        <pre><code>python generate_seed_gui.pyw</code></pre>
+    </li>
+</ol>
+
+<h2>Features:</h2>
+<ul>
+    <li><strong>Banner:</strong> Displays a banner image from the 'images/banner.png' path.</li>
+    <li><strong>Create/Recreate Database Button:</strong>
+        <ul>
+            <li>Initializes or recreates the word database used for generating seeds. Displays progress in a progress bar.</li>
+        </ul>
+    </li>
+    <li><strong>Generate Seed Button:</strong>
+        <ul>
+            <li>Produces a new game seed using words from the database and displays it. The seed generation uses a separate script that fetches random words from the SQLite database and combines them.</li>
+        </ul>
+    </li>
+    <li><strong>Copy to Clipboard Button:</strong>
+        <ul>
+            <li>Allows users to copy the current seed to the system clipboard.</li>
+        </ul>
+    </li>
+    <li><strong>Progress Bar:</strong>
+        <ul>
+            <li>Shows database creation progress when the "Create/Recreate Database" button is clicked.</li>
+        </ul>
+    </li>
+    <li><strong>Word Count Display:</strong>
+        <ul>
+            <li>Displays the current count of words in the database.</li>
+        </ul>
+    </li>
+    <li><strong>Cancel Button:</strong>
+        <ul>
+            <li>Halts the ongoing database creation process.</li>
+        </ul>
+    </li>
+</ul>
+
+<h2>Word Database:</h2>
+<p>
+    The application utilizes a SQLite database to store words fetched from the WordNet database. The database is named <code>word_database.db</code> and contains a table <code>words</code> where individual words from WordNet are stored. The <code>create_database()</code> function checks if the database file exists, and if so, the words table is dropped and recreated. This ensures fresh and updated words for generating seeds.
+</p>
+
+<h2>Game Seed Generation:</h2>
+<p>
+    The application uses a separate script for seed generation. This script fetches two random words from the SQLite database and combines them with a hyphen to form the game seed. The methods involved include:
+    <ul>
+        <li><code>fetch_random_word_from_database()</code>: Retrieves a random word from the SQLite database.</li>
+        <li><code>generate_game_seed_from_database()</code>: Combines two fetched words with a hyphen to produce the game seed.</li>
+    </ul>
+</p>
+
+<h2>Workflow:</h2>
+<ol>
+    <li>If running the application for the first time or refreshing the word database, click "Create/Recreate Database".</li>
+    <li>Click "Generate Seed" to produce a new game seed.</li>
+    <li>Use "Copy to Clipboard" to copy the generated seed for your game or other applications.</li>
+</ol>
+
+<p>
+    This documentation offers an introduction to the functionalities and workflow of the <strong>SeedGeneratorApp</strong> script. For detailed understanding or modifications, developers should refer to the script's code and related documentation.
+</p>
+
+</body>
+
+</html>

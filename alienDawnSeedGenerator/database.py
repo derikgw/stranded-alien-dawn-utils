@@ -1,15 +1,8 @@
 import os
 import random
 import sqlite3
-import install_util
-
-# Ensure nltk is installed
-install_util.install_and_import("nltk")
 import nltk
-
-# Now, directly import the required functions/modules from nltk
 from nltk.corpus import wordnet
-from nltk import download
 
 
 def ensure_wordnet_data():
